@@ -1,0 +1,8 @@
+1. useMemo is a hook that allows you to memorize a value returned from slow computations.
+   They are only recomputed when one of their dependencies changes.
+   This can help improve performance, especially if you have expensive calculations that are performed frequently.
+
+2. useMemo expect 2 parameters.
+    The first one (required) is a function that will be called.
+    The second one (optional) is array of dependencies.
+    

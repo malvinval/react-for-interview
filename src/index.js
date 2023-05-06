@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import UseStateApp from './useState/App';
 import UseEffectApp from './useEffect/App';
+import UseMemoApp from './useMemo/App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -10,6 +11,7 @@ root.render(
   <React.StrictMode>
     <UseStateApp />
     <UseEffectApp />
+    <UseMemoApp />
   </React.StrictMode>
 );
 
