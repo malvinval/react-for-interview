@@ -1,0 +1,35 @@
+Important notes:
+
+1. You can only use state inside a function component.
+2. Hooks cannot be called conditionally.
+3. You can check the structure of useState in console. ex: console.log(useState(0))
+4. When you update a state, your component re-renders.
+5. It is recommended to pass a function as a parameter to the useState dispatch function for modifying state.
+    The parameter of the function inside the setState function is the previous value of the state.
+    
+    Here's an example to illustrate why this is important:
+
+    const [number, setNumber] = useState(0);
+     
+    const handleOperation = () => {
+        setNumber(number + 1); ----> setNumber(0 + 1)
+        setNumber(number + 1); ----> setNumber(0 + 1)
+    }
+
+    With the code above, we expect our state to be incremented by 2.
+    Unfortunately, the code will not be able to achieve that because number is still known as 0 when the setNumber function is called twice.
+    This is because setNumber is asynchronous and doesn't update the state immediately.
+
+    As a result, both calls to setNumber will use the previous value of number (which is 0) to calculate the new value.
+    So the state will be 1 instead of 2.
+
+    The solution to this problem is to pass a function as a parameter to setNumber that takes the previous state value as an argument.
+    Here's the corrected code:
+
+    setNumber(previousNumber => number + 1); ----> setNumber(0 + 1)
+    setNumber(previousNumber => number + 1); ----> setNumber(1 + 1)
+
+    With this change, the state will be correctly incremented by 2, because each call to setNumber now uses the previous state value to calculate the new value.
+
+6. When you run dispatch function of useState hook, you totally overwrite the current state.
+ 
