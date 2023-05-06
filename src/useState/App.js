@@ -16,7 +16,8 @@ const App = () => {
 
     const element = (
         <>
-            <h1>{number}</h1>
+            <h1>useState Hook</h1>
+            <p style={{'fontSize': '30px'}}>{number}</p>
             <button onClick={handleOperation.bind(this, '+')}>+</button>
             <button onClick={handleOperation.bind(this, '-')}>-</button>
         </>
