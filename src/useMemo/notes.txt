@@ -5,4 +5,32 @@
 2. useMemo expect 2 parameters.
     The first one (required) is a function that will be called.
     The second one (optional) is array of dependencies.
-    
+
+Here's an example of using useMemo to memoize a computed value in a React functional component:
+
+function MyComponent({ data }) {
+  const expensiveValue = useMemo(() => {
+    // Do some expensive computation here
+    return data.reduce((acc, item) => acc + item, 0);
+  }, [data]);
+
+  return (
+    <div>
+      <p>Expensive value: {expensiveValue}</p>
+      {/* Render the rest of the component */}
+    </div>
+  );
+}
+
+In this example, MyComponent receives a data prop, which is an array of numbers.
+We want to compute the sum of all the numbers in the array, but we don't want to repeat this computation unnecessarily on every render.
+So we use useMemo to memorize the computed value.
+
+The first argument to useMemo is a function that does the expensive computation.
+In this case, we're using the reduce method to sum up all the numbers in the data array.
+The second argument to useMemo is an array of dependencies.
+If any of the dependencies change, the memoized value will be recomputed.
+In this case, the only dependency is the data prop.
+
+Now, whenever the data prop changes, useMemo will recompute the expensiveValue and return the memoized value.
+Otherwise, it will return the previously computed value without re-executing the expensive computation.
