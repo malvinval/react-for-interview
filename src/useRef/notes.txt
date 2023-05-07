@@ -1,0 +1,37 @@
+useRef is a hook that returns an object. There is only 1 property inside the object, mainly `current`.
+`current` property hold the initial value of useRef. Do console.log(useRef(0)) to see the structure
+of useRef hook.
+
+Imagine if we want to count how many times our component rendered.
+If we decide to do that with useState and useEffect hook, it means we decide to run an infinite increment
+loop to our state.
+
+Example:
+
+const [number, setNumber] = useState(0);
+const [totalRender, setTotalRender] = useState(0);
+
+useEffect(() => {
+    setTotalRender(previousNumber => previousNumber + 1);   
+});
+
+const element = (
+    <>
+        <h1>useRef</h1>
+        <p>Component rendered {totalRender} times.</p>
+
+        <button onClick={() => setNumber(previousNumber => previousNumber + 1)}>Click me!</button>
+    </>
+);
+
+Reason:
+1. useEffect hook modify totalRender state, which causes component re-render.
+2. Component re-rendering causes useEffect to be executed.
+3. Back to number 1.
+
+This problem can be solved by using useRef because useRef will persist a value when component rendered.
+
+useRef also can be used to hold an DOM element, using ref atribute inside a component. Example:
+
+const textInputRef = useRef();
+<input ref={textInputRef} type="text" />
